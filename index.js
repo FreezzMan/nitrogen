@@ -13,7 +13,7 @@ bot.on('message', message =>
     if(message.equals(bot.user)) return;
     if(!message.content.startsWith(prefix)) return;
 
-    const str = {};
+    const str = [];
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
