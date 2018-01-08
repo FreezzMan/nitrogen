@@ -2,6 +2,8 @@ const cmd = require('discord.js');
 const bot = new cmd.Client();
 const prefix = "!";
 
+bot.music = require('./music.js');
+
 bot.on('ready', () =>
 {
     console.log('Nitrogen - Ok !');
@@ -12,7 +14,7 @@ bot.on('message', message =>
     if(message.equals(bot.user)) return;
     if(!message.content.startsWith(prefix)) return;
 
-    const str = [];
+    const str = {};
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
@@ -28,7 +30,7 @@ bot.on('message', message =>
                         icon_url: bot.user.avatarURL
                     },
                     title: "__Liste des commandes:__",
-                    description: "  **add** \n **remove** \n **view**",
+                    description: "**add** \n **remove** \n **view**",
                     fields:
                     [{
                         name: "__Préfix__:",
@@ -100,5 +102,5 @@ bot.on('message', message =>
     }
 
 });
-bot.login(process.env.TOKEN)
+bot.login(cfg.token)
 
