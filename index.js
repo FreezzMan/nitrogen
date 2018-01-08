@@ -1,6 +1,5 @@
 const cmd = require('discord.js');
 const bot = new cmd.Client();
-const cfg = require('./config.json');
 const prefix = "!";
 
 bot.on('ready', () =>
@@ -101,5 +100,5 @@ bot.on('message', message =>
     }
 
 });
-bot.login(cfg.token)
+bot.login(process.env.TOKEN)
 
