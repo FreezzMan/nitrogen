@@ -2,6 +2,7 @@ const cmd = require('discord.js');
 const bot = new cmd.Client();
 const prefix = "!";
 
+bot.music = require('./music.js');
 
 bot.on('ready', () =>
 {
@@ -93,13 +94,6 @@ bot.on('message', message =>
         default:
             break;
     }
-
-    if(str.some(word => message.content.includes(word)))
-    {
-        message.delete();
-        message.reply(" Ho pas de gros mot !");
-    }
-
 });
 bot.login(process.env.TOKEN)
 
