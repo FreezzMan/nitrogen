@@ -1,0 +1,20 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Freez",
+  "license": "ISC",
+  "description": "Bot music",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "discord.js-commando": "^0.9.0",
+    "nodemon": "^1.14.8",
+    "opusscript": "0.0.6",
+    "youtube-dl": "^1.12.2",
+    "ytdl-core": "^0.18.5"
+  },
+  "devDependencies": {}
+}
