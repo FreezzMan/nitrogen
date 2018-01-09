@@ -15,6 +15,7 @@ bot.on('message', message =>
 
     str: []
     var args = message.content.substring(prefix.length).split(" ");
+    var servers = {};
     function play(connection, message)
     {
         var server = servers[message.guild.id];
