@@ -3,7 +3,6 @@ const bot = new cmd.Client();
 const yt = require('ytdl-core');
 const prefix = "!";
 
-bot.music = require('./music.js');
 
 bot.on('ready', () =>
 {
