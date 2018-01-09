@@ -138,8 +138,7 @@ bot.on('message', message =>
                 if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection)
                 {
                     play(connection, message);
-                    message.channel.sendMessage("Ceci est un test !");
-                    return;
+             
                 });
             break;
         case "stop":
