@@ -1,5 +1,6 @@
 const cmd = require('discord.js');
 const bot = new cmd.Client();
+const yt = require('ytdl-core');
 const prefix = "!";
 
 bot.music = require('./music.js');
@@ -14,8 +15,19 @@ bot.on('message', message =>
     if(message.equals(bot.user)) return;
     if(!message.content.startsWith(prefix)) return;
 
-    const str = [];
+    str: []
     var args = message.content.substring(prefix.length).split(" ");
+    function play(connection, message)
+    {
+        var server = servers[message.guild.id];
+        server.dispatcher = connection.playStream(yt(server.queue[0], {filter: "audioonly"}));
+        server.queue.shift();
+        server.dispatcher.on("end", function()
+    {
+        if(server.queue[0]) play(connection, message);
+        else connection.disconnect();
+    });
+    }
 
     switch (args[0].toLowerCase()) {
         case "help":
@@ -91,20 +103,42 @@ bot.on('message', message =>
                 return;
             }
         break;
-        case "test":
+        case "play":
+                if(!args[1])
+                {
+                    message.reply(" Lien introuvable !");
+                    return;
+                }
                 if(!message.member.voiceChannel)
                 {
                     message.reply(" Vous devez être dans un chat vocal !");
                     return;
                 }
 
+                if(!servers[message.guild.id]) servers[message.guild.id] =
+                {
+                    queue: []
+                };
+                
                 var server = servers[message.guild.id];
-
+                server.queue.push(args[1])
+                
                 if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection)
                 {
+                    play(connection, message);
                     message.channel.sendMessage("Ceci est un test !");
                     return;
                 });
+            break;
+        case "stop":
+            var server = servers[message.guild.id];
+
+            if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            break;
+        case "skip":
+            var server = servers[message.guild.id];
+
+            if(server.dispatcher) server.dispatcher.end();
             break;
         default:
             break;
