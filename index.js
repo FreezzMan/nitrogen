@@ -65,6 +65,10 @@ bot.on('message', message =>
                 message.reply(" Ajouter un mot à cencsurer !");
                 return;
             }
+            if(!servers[message.guild.id]) servers[message.guild.id] =
+            {
+                str: []
+           };
             
             if(server.str.indexOf(args[1]) !== -1)
             {
@@ -84,6 +88,12 @@ bot.on('message', message =>
             message.reply(" Ajouter un mot à supprimer !");
             return;
         }
+
+        if(!servers[message.guild.id]) servers[message.guild.id] =
+        {
+            str: []
+        };
+
         if(server.str.indexOf(args[1], str) === -1)
         {
             message.reply(" ce mot n'existe pas !");
