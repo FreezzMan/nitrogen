@@ -16,6 +16,7 @@ bot.on('message', message =>
     str: []
     var args = message.content.substring(prefix.length).split(" ");
     var servers = {};
+    var srv = {};
     function play(connection, message)
     {
         var server = servers[message.guild.id];
@@ -58,7 +59,7 @@ bot.on('message', message =>
 
             break;
         case "add":
-
+            var server = srv[message.guild.id];
             if(!args[1])
             {
                 message.reply(" Ajouter un mot à cencsurer !");
@@ -70,30 +71,32 @@ bot.on('message', message =>
                 message.reply(" ce mot existe déjà");
                 return;
             }else{
-                str.push(args[1]);
+                server.str.push(args[1]);
                 message.reply(" "+args[1]+" à bien été ajouter !");
                 return;
             }
             
             break;
         case "remove":
+        var server = srv[message.guild.id];
         if(!args[1])
         {
             message.reply(" Ajouter un mot à supprimer !");
             return;
         }
-        if(str.indexOf(args[1], str) === -1)
+        if(server.str.indexOf(args[1], str) === -1)
         {
             message.reply(" ce mot n'existe pas !");
             return;
         }else{
-            str.splice(args[1]);
+            server.str.splice(args[1]);
             message.reply(" "+args[1]+" à bien été supprimer !");
             return;
         }
             break;
         case "view":
-            if(str.length === 0)
+        var server = srv[message.guild.id];
+            if(server.str.length === 0)
             {
                 message.reply(" C'est vide !");
                 return;
