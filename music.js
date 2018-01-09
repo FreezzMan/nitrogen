@@ -13,18 +13,10 @@ bot.on('message', message =>
 
     switch (args[0].toLowerCase()) {
         case "test":
-                if(!message.member.voiceChannel)
-                {
-                   message.channel.sendMessage("Tu dois être dans un salon vocal !);
-                   return;
-                }
-                
-                var server = servers[message.guild.id];
                 if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection)
-                {
-                    message.channel.sendMessage("Ceci est un test !");
-                    return;
-                });
+            {
+                message.channel.sendMessage("Ceci est un test !");
+            });
             break;
     
         default:

@@ -30,7 +30,7 @@ bot.on('message', message =>
                         icon_url: bot.user.avatarURL
                     },
                     title: "__Liste des commandes:__",
-                    description: "**add** \n **remove** \n **view**",
+                    description: "**add** \n **remove** \n **view** \n **test**",
                     fields:
                     [{
                         name: "__Préfix__:",
@@ -91,6 +91,21 @@ bot.on('message', message =>
                 return;
             }
         break;
+        case "test":
+                if(!message.channel.voiceChannel)
+                {
+                    message.reply(" Vous devez être dans un chat vocal !");
+                    return;
+                }
+
+                var server = servers[message.guild.id];
+
+                if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection)
+                {
+                    message.channel.sendMessage("Ceci est un test !");
+                    return;
+                });
+            break;
         default:
             break;
     }
