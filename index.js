@@ -3,7 +3,6 @@ const bot = new cmd.Client();
 const yt = require('ytdl-core');
 const prefix = "!";
 
-
 bot.on('ready', () =>
 {
     console.log('Nitrogen - Ok !');
@@ -121,7 +120,7 @@ bot.on('message', message =>
                 
                 var server = servers[message.guild.id];
                 server.queue.push(args[1])
-                
+
                 if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection)
                 {
                     play(connection, message);
