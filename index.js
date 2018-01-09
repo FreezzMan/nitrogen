@@ -92,7 +92,7 @@ bot.on('message', message =>
             }
         break;
         case "test":
-                if(!message.channel.voiceChannel)
+                if(!message.member.voiceChannel)
                 {
                     message.reply(" Vous devez être dans un chat vocal !");
                     return;
