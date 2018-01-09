@@ -66,7 +66,7 @@ bot.on('message', message =>
                 return;
             }
             
-            if(str.indexOf(args[1]) !== -1)
+            if(server.str.indexOf(args[1]) !== -1)
             {
                 message.reply(" ce mot existe déjà");
                 return;
